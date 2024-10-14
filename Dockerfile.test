@@ -1,8 +1,13 @@
 ARG BASE_IMAGE=python:3.8-slim
 FROM ${BASE_IMAGE} as base
 
-# install pytest
-RUN pip install pytest
+# Copy requirements
+COPY requirements.txt ./
 
-# run the tests
-CMD ["pytest", "test_main.py"]
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Run tests, eventually we want ARGs to be passed in
+# If this runs with the default base image, pytest will fail
+# as it needs at least one test to exit with 0
+CMD ["pytest"]
