@@ -5,9 +5,6 @@ runs:
   steps:
     - name: Checkout action repository
       uses: actions/checkout@v2
-      with:
-        repository: ${{ github.repository }}
-        path: action-repo
 
     - name: Download artifact
       uses: actions/download-artifact@v2
@@ -23,8 +20,7 @@ runs:
       id: build
       uses: docker/build-push-action@v2
       with:
-        context: ./action-repo
-        file: ./action-repo/Dockerfile.test
+        file: ${{ github.action_path }}/Dockerfile.test
         push: false
         tags: tester:latest
         build-args: |
