@@ -22,7 +22,8 @@ jobs:
       - name: Checkout this repo
         uses: actions/checkout@v2
         with:
-          repository: ${{ github.repository }}
+          repository: ${{ github.action_repository }}
+          ref: ${{ github.action_ref }}
           path: repo
 
       - name: Build
