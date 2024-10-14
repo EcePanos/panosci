@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: EcePanos/panosci
-          path: /test
+          path: test
 
       - name: Build
         id: build
